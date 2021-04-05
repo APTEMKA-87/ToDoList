@@ -78,8 +78,8 @@ test('status of specified task should be changed', () => {
 
     const endState = tasksReducer(startState, action)
 
-    expect(endState['todolist2'][1].isDone).toBe(false);
-    expect(endState['todolist1'][1].isDone).toBe(true);
+    expect(endState['todolistId2'][1].isDone).toBe(false);
+    expect(endState['todolistId1'][1].isDone).toBe(true);
 });
 
 test('title of specified task should be changed', () => {
@@ -100,8 +100,8 @@ test('title of specified task should be changed', () => {
 
     const endState = tasksReducer(startState, action)
 
-    expect(endState['todolist2'][1].title).toBe('beer');
-    expect(endState['todolist1'][1].title).toBe('JS');
+    expect(endState['todolistId2'][1].title).toBe('beer');
+    expect(endState['todolistId1'][1].title).toBe('JS');
 });
 
 test('new array should be added when new todolist is added', () => {
@@ -157,3 +157,9 @@ test('property with todolistId should be deleted', () => {
     expect(keys.length).toBe(1);
     expect(endState["todolistId2"]).not.toBeDefined();
 });
+
+
+
+
+
+
