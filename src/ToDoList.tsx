@@ -19,7 +19,8 @@ type ToDoListPropsType = {
     changeToDoListTitle: (newTitle: string, todoListID: string) => void
 }
 
-export function ToDoList(props: ToDoListPropsType) {
+export const ToDoList = React.memo((props: ToDoListPropsType) => {
+    console.log('ToDoList click')
     const addTask = (title: string) => props.addTask(title, props.todoListID)
     const removeTodoList = () => props.removeTodoList(props.todoListID)
     const setAllFilter = () => {
@@ -88,5 +89,5 @@ export function ToDoList(props: ToDoListPropsType) {
             </div>
         </div>
     )
-}
+})
 
