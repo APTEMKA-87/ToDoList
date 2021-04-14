@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {ToDoList} from './ToDoList';
-import AddItemForm from './AddItemForm';
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Menu} from '@material-ui/icons';
 import {
@@ -13,6 +12,7 @@ import {
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleStatusAC, removeTaskAC} from './state/tasks-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
+import AddItemForm from './AddItemForm';
 
 export type TaskType = {
     title: string
