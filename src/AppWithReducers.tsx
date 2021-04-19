@@ -98,13 +98,14 @@ function AppWithReducers() {
     }
 
     const todoListComponents = todoLists.map(tl => {
-        let tasksForToDoList = tasks[tl.id]
+        let allTodolistTasks = tasks[tl.id];
+        let tasksForTodolist = allTodolistTasks;
 
-        if (tl.filter === 'active') {
-            tasksForToDoList = tasksForToDoList.filter(t => t.isDone === false)
+        if (tl.filter === "active") {
+            tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
         }
-        if (tl.filter === 'completed') {
-            tasksForToDoList = tasksForToDoList.filter(t => t.isDone === true)
+        if (tl.filter === "completed") {
+            tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
         }
         return (
             <Grid item key={tl.id}>
@@ -116,7 +117,7 @@ function AppWithReducers() {
                         removeTask={removeTask}
                         removeTodoList={removeTodoList}
                         title={tl.title}
-                        tasks={tasksForToDoList}
+                        tasks={tasksForTodolist}
                         changeTaskTitle={changeTaskTitle}
                         changeToDoListFilter={changeToDoListFilter}
                         changeTaskStatus={changeTaskStatus}
