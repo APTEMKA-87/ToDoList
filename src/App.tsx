@@ -10,8 +10,8 @@ function App() {
         {id: 1, title: 'HTML', isDone: true,},
         {id: 2, title: 'JS', isDone: true,},
         {id: 3, title: 'REACT', isDone: false,},
-        {id: 3, title: 'Rest API', isDone: false,},
-        {id: 3, title: 'GraphQL', isDone: false,},
+        {id: 4, title: 'Rest API', isDone: false,},
+        {id: 5, title: 'GraphQL', isDone: false,},
     ])
 
     function removeTask(id: number) {
