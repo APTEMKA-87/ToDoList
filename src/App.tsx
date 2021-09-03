@@ -5,6 +5,12 @@ import {v1} from 'uuid';
 
 export type FilterValuesType = "all" | "active" | "completed";
 
+type ToDoListsType = {
+    id: string,
+    title: string,
+    filter: FilterValuesType
+}
+
 function App() {
 
     let [tasks, setTasks] = useState([
@@ -38,30 +44,43 @@ function App() {
     }
 
 
-    let tasksForTodolist = tasks;
 
-    if (filter === "active") {
-        tasksForTodolist = tasks.filter(t => t.isDone === false);
-    }
-    if (filter === "completed") {
-        tasksForTodolist = tasks.filter(t => t.isDone === true);
-    }
 
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
 
+let toDoLists: ToDoListsType[] =[
+    {id: v1(), title: 'Learn', filter: 'active'},
+    {id: v1(), title: 'Buy', filter: 'completed'}
+
+]
 
     return (
         <div className="App">
-            <Todolist title="What to learn"
-                      tasks={tasksForTodolist}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      addTask={addTask}
-                      changeTaskStatus={changeStatus}
-                      filter={filter}
-            />
+            {
+                toDoLists.map((tl) => {
+
+                    let tasksForTodolist = tasks;
+
+                    if (tl.filter === "active") {
+                        tasksForTodolist = tasks.filter(t => t.isDone === false);
+                    }
+                    if (tl.filter === "completed") {
+                        tasksForTodolist = tasks.filter(t => t.isDone === true);
+                    }
+
+                    return  <Todolist title={tl.title}
+                                      tasks={tasksForTodolist}
+                                      removeTask={removeTask}
+                                      changeFilter={changeFilter}
+                                      addTask={addTask}
+                                      changeTaskStatus={changeStatus}
+                                      filter={tl.filter}
+                    />
+                })
+            }
+
         </div>
     );
 }
