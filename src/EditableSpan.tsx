@@ -1,26 +1,27 @@
 import React, {ChangeEvent, useState} from 'react';
 
 type EditableSpanPropsType = {
-    title: string
+    value: string
     onChange: (newValue: string) => void
 }
 
 export function EditableSpan(props: EditableSpanPropsType) {
+    let [editMode, setEditMode] = useState(false);
+    let [title, setTitle] = useState(props.value);
 
-    let [editMode, setEditMode] = useState(false)
-    let [title, setTitle] = useState('')
-
-    const activeEditMode = () => {
-        setEditMode(true)
-        setTitle(props.title)
+    const activateEditMode = () => {
+        setEditMode(true);
+        setTitle(props.value);
     }
-    const activeViewMode = () => {
-        setEditMode(false)
-        props.onChange(title)
+    const activateViewMode = () => {
+        setEditMode(false);
+        props.onChange(title);
     }
-    const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+    }
 
     return editMode
-        ? <input value={title} onChange={onChangeTitleHandler} onBlur={activeViewMode} autoFocus/>
-        : <span onDoubleClick={activeEditMode}>{props.title}</span>
+        ? <input value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode}/>
+        : <span onDoubleClick={activateEditMode}>{props.value}</span>
 }
